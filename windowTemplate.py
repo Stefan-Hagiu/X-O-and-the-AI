@@ -1,13 +1,16 @@
 from tkinter import *
 
-class windowTemplate:
-
-    __thisWindow = None
+class WindowTemplate:
 
     def __init__(self):
-        self.thisWindow = Tk()
-        self.thisWindow.wm_title("X, O and the AI ")
+        _thisWindow = None
+        self._thisWindow = Tk()
+        self._thisWindow.wm_title("X, O and the AI ")
+        self.loadUI()
         self.run()
 
     def run(self):
-        self.thisWindow.mainloop()
+        self._thisWindow.mainloop()
+
+    def loadUI(self):
+        print("Not ready yet")
