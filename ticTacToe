@@ -2,6 +2,7 @@ class TicTacToeBoard:
     def __init__(self):
         self.playerToMove = 1
         self.playerPiece = {0:"nothing", 1:"X", 2:"O"}
+        self.numberOfPlacedPieces = 0
 
         self.lastMoveWasValid = 1
 
@@ -18,6 +19,7 @@ class TicTacToeBoard:
         if (self.gameBoard[x][y] == "empty"):
             self.gameBoard[x][y] = self.playerPiece[self.playerToMove]
             self.playerToMove = (self.playerToMove ^ 3)
+            self.numberOfPlacedPieces += 1
         else:
             self.lastMoveWasValid = 0
             return "Invalid Move"
@@ -29,6 +31,9 @@ class TicTacToeBoard:
 
         if self.playerTwoWon():
             return "Player 2 won"
+
+        if self.numberOfPlacedPieces == self.boardHeight * self.boardWidth:
+            return "Tie"
 
     def playerOneWon(self):
         currentPlayerPiece = self.playerPiece[1]
