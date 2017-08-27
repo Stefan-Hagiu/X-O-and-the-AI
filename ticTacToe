@@ -18,6 +18,9 @@ class TicTacToeBoard:
         if (self.gameBoard[x][y] == "empty"):
             self.gameBoard[x][y] = self.playerPiece[self.playerToMove]
             self.playerToMove = (self.playerToMove ^ 3)
+        else:
+            self.lastMoveWasValid = 0
+            return "Invalid Move"
 
         self.lastMoveWasValid = 1
 
