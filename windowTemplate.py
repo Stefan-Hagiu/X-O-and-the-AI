@@ -1,4 +1,5 @@
 from tkinter import *
+from PIL import Image
 
 class WindowTemplate:
 
@@ -14,3 +15,7 @@ class WindowTemplate:
 
     def loadUI(self):
         print("Not ready yet")
+
+    def stop(self):
+        print("A")
+        self._thisWindow.destroy()

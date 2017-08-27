@@ -1,6 +1,9 @@
 from windowTemplate import *
+from gameMenu import *
 
 class MainMenu (WindowTemplate):
+
+    gameMenu = None
 
     def __init__(self):
         super().__init__()
@@ -22,7 +25,8 @@ class MainMenu (WindowTemplate):
         todo = 1
 
     def enterTwoPlayerMode (self):
-        todo = 1
+        gameMenu = GameMenu()
+        self.stop()
 
     def enterOptions (self):
         todo = 1
