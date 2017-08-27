@@ -1,3 +1,9 @@
 from mainMenu import MainMenu
+from tkinter import *
 
-gameInstance = MainMenu()
+programWindow = Tk()
+programWindow.wm_title("X, O and the AI ")
+
+gameInstance = MainMenu(programWindow)
+
+programWindow.mainloop()

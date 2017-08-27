@@ -5,8 +5,8 @@ class MainMenu (WindowTemplate):
 
     gameMenu = None
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, programWindow):
+        super(MainMenu, self).__init__(programWindow)
 
     def loadUI(self):
         aIButton = Button(self._thisWindow, text="VS AI", command=self.enterAIMenu)
@@ -25,7 +25,7 @@ class MainMenu (WindowTemplate):
         todo = 1
 
     def enterTwoPlayerMode (self):
-        gameMenu = GameMenu()
+        MainMenu.gameMenu = GameMenu(self.programWindow)
         self.stop()
 
     def enterOptions (self):
