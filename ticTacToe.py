@@ -12,6 +12,9 @@ class TicTacToeBoard:
 
     def move (self, x, y):
 
+        print (x,y)
+
+
         if x < 1 or x > 3 or y < 1 or y > 3:
             self.lastMoveWasValid = 0
             return "Invalid Move"

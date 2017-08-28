@@ -19,7 +19,7 @@ class GameMenu(WindowTemplate):
             for j in range (1, 4):
                 if self.buttonList[i][j] == event.widget:
                     x=i
-                    y=i
+                    y=j
         returnString = self.game.move(x, y)
         print (returnString)
 
