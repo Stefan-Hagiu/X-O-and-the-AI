@@ -12,9 +12,6 @@ class TicTacToeBoard:
 
     def move (self, x, y):
 
-        print (x,y)
-
-
         if x < 1 or x > 3 or y < 1 or y > 3:
             self.lastMoveWasValid = 0
             return "Invalid Move"
@@ -37,6 +34,7 @@ class TicTacToeBoard:
 
         if self.numberOfPlacedPieces == self.boardHeight * self.boardWidth:
             return "Tie"
+        return "Player " + (self.playerToMove ^ 3).__str__() + " moved"
 
     def playerOneWon(self):
         currentPlayerPiece = self.playerPiece[1]
