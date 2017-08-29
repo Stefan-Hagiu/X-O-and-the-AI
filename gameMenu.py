@@ -1,5 +1,5 @@
 from windowTemplate import *
-from ticTacToe import *
+from ticTacToe import TicTacToeBoard
 
 class GameMenu(WindowTemplate):
 
@@ -21,5 +21,5 @@ class GameMenu(WindowTemplate):
                     x=i
                     y=j
         returnString = self.game.move(x, y)
-        print (returnString)
+
 

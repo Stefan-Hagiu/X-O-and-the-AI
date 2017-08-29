@@ -1,5 +1,5 @@
 from windowTemplate import *
-from gameMenu import *
+from gameMenu import GameMenu
 
 class MainMenu (WindowTemplate):
 
