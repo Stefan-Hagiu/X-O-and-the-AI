@@ -1,6 +1,7 @@
 from windowTemplate import *
 from gameMenu import GameMenu
 
+
 class MainMenu (WindowTemplate):
 
     gameMenu = None

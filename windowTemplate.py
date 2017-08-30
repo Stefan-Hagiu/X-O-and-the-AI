@@ -1,4 +1,6 @@
 from tkinter import *
+from PIL import Image,ImageTk
+
 
 class WindowTemplate:
 
