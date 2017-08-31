@@ -35,10 +35,13 @@ class GameMenu(WindowTemplate):
                 if self.buttonList[i][j] == event.widget:
                     x=i
                     y=j
+        self.makeMove(x, y)
+
+    def makeMove(self, x, y):
         returnString = self.game.move(x, y)
         if returnString == "Player 1 moved" or returnString == "Player 1 won":
-            event.widget.config(image=self.imageList[1])
+            self.buttonList[x][y].config(image=self.imageList[1])
         elif returnString == "Player 2 moved" or returnString == "Player 2 won":
-            event.widget.config(image=self.imageList[2])
+            self.buttonList[x][y].config(image=self.imageList[2])
 
 
