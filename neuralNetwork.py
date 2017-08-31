@@ -31,18 +31,14 @@ class neuralNetwork:
     def sigmoid(self, value):
         return 1/(1 + (e ** (-value)))
 
-    def generateWeightsMatrixFromParents(self, firstFather, secondFather):
-        self.numberOfInputs = firstFather.numberOfInputs
-        self.numberOfHiddenLayers = firstFather.numberOfHiddenLayers
-        self.neuronsPerHiddenLayer = firstFather.neuronsPerHiddenLayer
-        self.numberOfOutputs = firstFather.numberOfOutputs
-        self.weightsMatrix = firstFather.weightsMatrix
-        for i in (0, len(self.weightsMatrix)):
-            for j in (0, len(self.weightsMatrix[i])):
-                for k in (0, len(self.weightsMatrix[i][j])):
-                    self.weightsMatrix[i][j][k] = (firstFather.weightsMatrix[i][j][k]+
-                                                   secondFather.weightsMatrix[i][j][k])/2
-
+    def generateWeightsMatrixFromParents(firstFather, secondFather):
+        weightsMatrix = firstFather.weightsMatrix
+        for i in (0, len(weightsMatrix)):
+            for j in (0, len(weightsMatrix[i])):
+                for k in (0, len(weightsMatrix[i][j])):
+                    weightsMatrix[i][j][k] = (firstFather.weightsMatrix[i][j][k]+
+                                              secondFather.weightsMatrix[i][j][k])/2
+        return weightsMatrix
 
     def __init__(self, numberOfInputs, numberOfHiddenLayers, neuronsPerHiddenLayer, numberOfOutputs, weightsMatrix):
 
