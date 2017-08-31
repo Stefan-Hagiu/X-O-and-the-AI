@@ -37,6 +37,19 @@ class neuralNetwork:
     def returnAnswer(self):
         todo = 1
 
+    def generateWeightsMatrixFromParents(self, firstFather, secondFather):
+        self.numberOfInputs = firstFather.numberOfInputs
+        self.numberOfHiddenLayers = firstFather.numberOfHiddenLayers
+        self.neuronsPerHiddenLayer = firstFather.neuronsPerHiddenLayer
+        self.numberOfOutputs = firstFather.numberOfOutputs
+        self.weightsMatrix = firstFather.weightsMatrix
+        for i in (0, len(self.weightsMatrix)):
+            for j in (0, len(self.weightsMatrix[i])):
+                for k in (0, len(self.weightsMatrix[i][j])):
+                    self.weightsMatrix[i][j][k] = (firstFather.weightsMatrix[i][j][k]+
+                                                   secondFather.weightsMatrix[i][j][k])/2
+
+
     def __init__(self, numberOfInputs, numberOfHiddenLayers, neuronsPerHiddenLayer, numberOfOutputs, weightsMatrix):
 
         self.numberOfInputs = numberOfInputs
@@ -47,7 +60,6 @@ class neuralNetwork:
 
         if self.weightsMatrix == []:
             self.generateRandomWeightsMatrix()
-        todo = 1
 
     def answer(self, inputList):
         self.currentValues = inputList
@@ -73,7 +85,6 @@ class neuralNetwork:
             returnMatrix.append([])
             for j in range (0, width):
                 returnMatrix[i].append(random.random() - random.random())
-
         return returnMatrix
 
     def propagateThroughNetwork(self):
