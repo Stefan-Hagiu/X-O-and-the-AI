@@ -48,6 +48,8 @@ class neuralNetwork:
         self.numberOfOutputs = numberOfOutputs
         self.weightsMatrix = weightsMatrix
 
+        self.currentValues = []
+
         if self.weightsMatrix == []:
             self.generateRandomWeightsMatrix()
 
@@ -67,7 +69,6 @@ class neuralNetwork:
             self.weightsMatrix[i+1] = self.generateMatrix(self.neuronsPerHiddenLayer, self.neuronsPerHiddenLayer)
         self.weightsMatrix[self.numberOfHiddenLayers]=\
             self.generateMatrix(self.numberOfOutputs, self.neuronsPerHiddenLayer)
-
 
     def generateMatrix(self, height, width):
         returnMatrix = []
