@@ -31,12 +31,6 @@ class neuralNetwork:
     def sigmoid(self, value):
         return 1/(1 + (e ** (-value)))
 
-    def feedInputs(self, inputList):
-        todo = 1
-
-    def returnAnswer(self):
-        todo = 1
-
     def generateWeightsMatrixFromParents(self, firstFather, secondFather):
         self.numberOfInputs = firstFather.numberOfInputs
         self.numberOfHiddenLayers = firstFather.numberOfHiddenLayers
