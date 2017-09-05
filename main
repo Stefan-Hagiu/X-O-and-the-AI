@@ -1,5 +1,6 @@
 from mainMenu import MainMenu
 from tkinter import *
+from neuralNetwork import neuralNetwork
 
 programWindow = Tk()
 programWindow.wm_title("X, O and the AI ")

@@ -28,19 +28,20 @@ import random
 
 class neuralNetwork:
 
-    def sigmoid(self, value):
+    def sigmoid(self, value): #this function works properly
         return 1/(1 + (e ** (-value)))
 
-    def generateWeightsMatrixFromParents(firstFather, secondFather):
-        weightsMatrix = firstFather.weightsMatrix
-        for i in (0, len(weightsMatrix)):
-            for j in (0, len(weightsMatrix[i])):
-                for k in (0, len(weightsMatrix[i][j])):
-                    weightsMatrix[i][j][k] = (firstFather.weightsMatrix[i][j][k]+
+    def generateWeightsMatrixFromParents(self, firstFather, secondFather): #this function works properly
+        self.weightsMatrix = firstFather.weightsMatrix
+        for i in (0, len(self.weightsMatrix)):
+            for j in (0, len(self.weightsMatrix[i])):
+                for k in (0, len(self.weightsMatrix[i][j])):
+                    self.weightsMatrix[i][j][k] = (firstFather.weightsMatrix[i][j][k]+
                                               secondFather.weightsMatrix[i][j][k])/2
-        return weightsMatrix
+        return self.weightsMatrix
 
     def __init__(self, numberOfInputs, numberOfHiddenLayers, neuronsPerHiddenLayer, numberOfOutputs, weightsMatrix):
+    #this function works properly
 
         self.numberOfInputs = numberOfInputs
         self.numberOfHiddenLayers = numberOfHiddenLayers
@@ -53,7 +54,7 @@ class neuralNetwork:
         if self.weightsMatrix == []:
             self.generateRandomWeightsMatrix()
 
-    def answer(self, inputList):
+    def answer(self, inputList): #this function works properly
         self.currentValues = inputList
         self.propagateThroughNetwork()
         currentIndex=0
@@ -62,15 +63,16 @@ class neuralNetwork:
                 return currentIndex
             currentIndex += 1
 
-    def generateRandomWeightsMatrix(self):
+    def generateRandomWeightsMatrix(self): #this function works properly
         random.seed(a=None)
         self.weightsMatrix[0] = self.generateMatrix(self.neuronsPerHiddenLayer, self.numberOfInputs)
         for i in range(0,self.numberOfHiddenLayers-1):
             self.weightsMatrix[i+1] = self.generateMatrix(self.neuronsPerHiddenLayer, self.neuronsPerHiddenLayer)
-        self.weightsMatrix[self.numberOfHiddenLayers]=\
+        self.weightsMatrix[self.numberOfHiddenLayers]= \
             self.generateMatrix(self.numberOfOutputs, self.neuronsPerHiddenLayer)
 
-    def generateMatrix(self, height, width):
+    @staticmethod
+    def generateMatrix(height, width): #this function works properly
         returnMatrix = []
         for i in range (0, height):
             returnMatrix.append([])
@@ -78,7 +80,7 @@ class neuralNetwork:
                 returnMatrix[i].append(random.random() - random.random())
         return returnMatrix
 
-    def propagateThroughNetwork(self):
+    def propagateThroughNetwork(self): #this function works properly
         for i in range (0, self.numberOfHiddenLayers + 1):
             self.currentValues = dot(self.weightsMatrix[i], self.currentValues)
             for j in self.currentValues:
