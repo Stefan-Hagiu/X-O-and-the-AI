@@ -5,9 +5,31 @@ class AITrainer:
     def __init__(self, numberOfAIs):
         self.AIList = []
         self.numberOfAIs = numberOfAIs
+        self.numberOfSurvivingAIs = max(2,numberOfAIs/5)
+        for i in range (0,self.numberOfAIs):
+            self.AIList.append(self.initializeAI)
 
     def crank(self):
-        todo = 1
+        newAIList = []
+        winner = 0
+        for k in range(0,len(self.AIList)):
+            for i in range (0,len(self.AIList)-1):
+                winner = self.findWinner(self.AIList[i],self.AIList[i+1])
+                if winner==2:
+                    self.AIList[i],self.AIList[i+1] = self.AIList[i+1],self.AIList[i]
+
+        for i in range (0, self.numberOfSurvivingAIs):
+            for j in range (i, self.numberOfSurvivingAIs):
+                newAI=self.initializeAI()
+                newAI.generateWeightsMatrixFromParents(self.AIList[i],self.AIList[j])
+                newAIList.append(newAI)
+
+        self.AIList = newAIList
+        self.numberOfSurvivingAIs = max(2, numberOfAIs / 5)
+
+    def initializeAI(self):
+        newAI = neuralNetwork(9,5,9,9,[])
+        return newAI
 
     def findWinner(self, ai1, ai2):
         gameWinner = 0
