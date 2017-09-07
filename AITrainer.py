@@ -5,7 +5,7 @@ class AITrainer:
     def __init__(self, numberOfAIs):
         self.AIList = []
         self.numberOfAIs = numberOfAIs
-        self.numberOfSurvivingAIs = max(2,numberOfAIs/5)
+        self.numberOfSurvivingAIs = max(2,self.numberOfAIs/5)
         for i in range (0,self.numberOfAIs):
             self.AIList.append(self.initializeAI)
 
@@ -25,7 +25,7 @@ class AITrainer:
                 newAIList.append(newAI)
 
         self.AIList = newAIList
-        self.numberOfSurvivingAIs = max(2, numberOfAIs / 5)
+        self.numberOfSurvivingAIs = max(2, self.numberOfAIs / 5)
 
     def initializeAI(self):
         newAI = neuralNetwork(9,5,9,9,[])
