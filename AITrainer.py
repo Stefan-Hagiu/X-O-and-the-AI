@@ -58,6 +58,8 @@ class AITrainer:
         return gameWinner
 
     def transformInput(self, input, gameState):
+        if gameState == 2:
+            gameState = -1
         for i in range (0, len(input)):
             if input[i]=="X":
                 input[i]=10000*gameState
