@@ -86,3 +86,10 @@ class TicTacToeBoard:
             return 1
         return 0
 
+    def returnInputForAi(self):
+        returnState = []
+        for height in range(1, len(self.gameBoard)):
+            for width in range(1, len(self.gameBoard[height])):
+                returnState.append([])
+                returnState[3*(height-1)+(width-1)].append(self.gameBoard[height][width])
+        return returnState

@@ -7,4 +7,11 @@ class AITrainer:
         self.numberOfAIs = numberOfAIs
 
     def crank(self):
+        todo = 1
 
+    def findWinner(self, ai1, ai2):
+        turn = 1
+        gameBoard = ticTacToe
+
+
+        turn=turn^3

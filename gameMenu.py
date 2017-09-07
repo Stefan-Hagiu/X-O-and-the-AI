@@ -44,4 +44,3 @@ class GameMenu(WindowTemplate):
         elif returnString == "Player 2 moved" or returnString == "Player 2 won":
             self.buttonList[x][y].config(image=self.imageList[2])
 
-
