@@ -44,7 +44,7 @@ class AITrainer:
                 answer=ai1.answer(aiInput)
             else:
                 answer=ai2.answer(aiInput)
-            gameBoardReturnString=gameBoard.move(answer/3,answer%3+1)
+            gameBoardReturnString=gameBoard.move(answer/3+1,answer%3+1)
             if gameBoardReturnString == "Player 1 won":
                 gameWinner=1
             elif gameBoardReturnString == "Player 2 won":
