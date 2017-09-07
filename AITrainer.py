@@ -33,6 +33,7 @@ class AITrainer:
                 elif turn == 2:
                     gameWinner = 1
             turn=turn^3
+        return gameWinner
 
     def transformInput(self, input, gameState):
         for i in range (0, len(input)):
