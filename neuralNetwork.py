@@ -37,7 +37,7 @@ class neuralNetwork:
             for j in (0, len(self.weightsMatrix[i])):
                 for k in (0, len(self.weightsMatrix[i][j])):
                     self.weightsMatrix[i][j][k] = (firstFather.weightsMatrix[i][j][k]+
-                                              secondFather.weightsMatrix[i][j][k])/2
+                                                   secondFather.weightsMatrix[i][j][k])/2
         return self.weightsMatrix
 
     def __init__(self, numberOfInputs, numberOfHiddenLayers, neuronsPerHiddenLayer, numberOfOutputs, weightsMatrix):

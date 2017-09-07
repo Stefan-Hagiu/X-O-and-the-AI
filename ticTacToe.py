@@ -22,7 +22,7 @@ class TicTacToeBoard:
             self.numberOfPlacedPieces += 1
         else:
             self.lastMoveWasValid = 0
-            return "Invalid Move"
+            return "Invalid move"
 
         self.lastMoveWasValid = 1
 
