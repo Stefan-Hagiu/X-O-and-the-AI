@@ -54,6 +54,7 @@ class GameMenu(WindowTemplate):
             if self.player2Type == "AI":
                 answer = self.aI.answer(neuralNetwork.transformInput(self.game.returnInputForAi, self.playerToMove))
                 self.playerToMove^=3
+        self.makeMove(answer/3+1,answer%3+1)
 
     def buttonClick(self, event):
         x=0
@@ -65,7 +66,8 @@ class GameMenu(WindowTemplate):
                     y=j
         self.makeMove(x, y)
         self.playerToMove^=3
-        self.moveAI()
+        if (self.playerToMove == 1 and self.player1Type == "AI") or (self.playerToMove == 2 and self.player2Type == "AI"):
+            self.moveAI()
 
     def makeMove(self, x, y):
         returnString = self.game.move(x, y)
