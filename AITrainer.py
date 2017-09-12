@@ -5,7 +5,7 @@ class AITrainer:
     def __init__(self, numberOfAIs):
         self.AIList = []
         self.numberOfAIs = numberOfAIs
-        self.numberOfSurvivingAIs = max(2,self.numberOfAIs/5)
+        self.numberOfSurvivingAIs = max(2.0,self.numberOfAIs/5)
         for i in range (0,self.numberOfAIs):
             self.AIList.append(self.initializeAI)
 
