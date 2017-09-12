@@ -1,12 +1,13 @@
 from windowTemplate import *
+from vsAIMenu import VsAIMenu
 from gameMenu import GameMenu
 
 
 class MainMenu (WindowTemplate):
 
-    gameMenu = None
-
     def __init__(self, programWindow):
+        self.gameMenu = None
+        self.vsAIMenu = None
         super(MainMenu, self).__init__(programWindow)
 
     def loadUI(self):
@@ -23,10 +24,11 @@ class MainMenu (WindowTemplate):
         exitButton.pack(fill=X)
 
     def enterAIMenu(self):
-        todo = 1
+        self.vsAIMenu = VsAIMenu(self.programWindow)
+        self.stop()
 
     def enterTwoPlayerMode (self):
-        MainMenu.gameMenu = GameMenu(self.programWindow, "Human", "Human", "")
+        self.gameMenu = GameMenu(self.programWindow, "Human", "Human", "")
         self.stop()
 
     def enterOptions (self):
