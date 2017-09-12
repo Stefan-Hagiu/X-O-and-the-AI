@@ -1,6 +1,7 @@
 from windowTemplate import *
 from ticTacToe import TicTacToeBoard
 from neuralNetwork import neuralNetwork
+from PIL import Image, ImageTk
 
 
 class GameMenu(WindowTemplate):

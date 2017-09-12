@@ -10,7 +10,7 @@ class TicTacToeBoard:
         self.boardHeight = 3
         self.gameBoard = [["empty" for width in range (self.boardWidth + 1)] for height in range (self.boardHeight + 1)]
 
-    def move (self, x, y):
+    def move(self, x, y):
 
         if x < 1 or x > 3 or y < 1 or y > 3:
             self.lastMoveWasValid = 0

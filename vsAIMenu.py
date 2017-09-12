@@ -6,6 +6,5 @@ class VsAIMenu(WindowTemplate):
         super(VsAIMenu, self).__init__(programWindow)
         aITrainer = AITrainer(1000)
         
-        
     def loadUI(self):
         print("Not ready yet")

@@ -1,12 +1,11 @@
 from tkinter import *
-from PIL import Image,ImageTk
 
 
 class WindowTemplate:
 
     def __init__(self, programWindow):
         self.programWindow = programWindow
-        self._thisWindow = Frame (programWindow)
+        self._thisWindow = Frame(programWindow)
         self.loadUI()
         self._thisWindow.pack()
 
