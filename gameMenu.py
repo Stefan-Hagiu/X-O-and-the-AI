@@ -1,7 +1,6 @@
 from windowTemplate import *
 from ticTacToe import TicTacToeBoard
 from neuralNetwork import neuralNetwork
-from threading import Thread
 
 
 class GameMenu(WindowTemplate):
