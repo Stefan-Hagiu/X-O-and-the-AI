@@ -85,3 +85,10 @@ class neuralNetwork:
             self.currentValues = dot(self.weightsMatrix[i], self.currentValues)
             for j in self.currentValues:
                 j = self.sigmoid(j)
+
+    def transformInput(self, input, gameState):
+        for i in range (0, len(input)):
+            if input[i]=="X":
+                input[i]=10000*gameState
+            elif input[i]=="O":
+                input[i]=-10000*gameState

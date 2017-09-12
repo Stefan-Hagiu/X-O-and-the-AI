@@ -39,7 +39,7 @@ class AITrainer:
         gameBoard = TicTacToeBoard()
         while not gameWinner:
             aiInput = gameBoard.returnInputForAi()
-            self.transformInput(aiInput, turn)
+            neuralNetwork.transformInput(aiInput, turn)
             if turn==1:
                 answer=ai1.answer(aiInput)
             else:
@@ -56,12 +56,3 @@ class AITrainer:
                     gameWinner = 1
             turn=turn^3
         return gameWinner
-
-    def transformInput(self, input, gameState):
-        if gameState == 2:
-            gameState = -1
-        for i in range (0, len(input)):
-            if input[i]=="X":
-                input[i]=10000*gameState
-            elif input[i]=="O":
-                input[i]=-10000*gameState
