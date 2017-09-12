@@ -86,7 +86,8 @@ class neuralNetwork:
             for j in self.currentValues:
                 j = self.sigmoid(j)
 
-    def transformInput(self, input, gameState):
+    @staticmethod
+    def transformInput( input, gameState):
         for i in range (0, len(input)):
             if input[i]=="X":
                 input[i]=10000*gameState
