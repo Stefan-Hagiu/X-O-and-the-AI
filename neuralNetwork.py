@@ -28,10 +28,10 @@ import random
 
 class neuralNetwork:
 
-    def sigmoid(self, value): #this function works properly
+    def sigmoid(self, value):
         return 1/(1 + (e ** (-value)))
 
-    def generateWeightsMatrixFromParents(self, firstFather, secondFather): #this function works properly
+    def generateWeightsMatrixFromParents(self, firstFather, secondFather):
         self.weightsMatrix = firstFather.weightsMatrix
         for i in (0, len(self.weightsMatrix)):
             for j in (0, len(self.weightsMatrix[i])):
@@ -41,7 +41,6 @@ class neuralNetwork:
         return self.weightsMatrix
 
     def __init__(self, numberOfInputs, numberOfHiddenLayers, neuronsPerHiddenLayer, numberOfOutputs, weightsMatrix):
-    #this function works properly
 
         self.numberOfInputs = numberOfInputs
         self.numberOfHiddenLayers = numberOfHiddenLayers
@@ -54,7 +53,7 @@ class neuralNetwork:
         if self.weightsMatrix == []:
             self.generateRandomWeightsMatrix()
 
-    def answer(self, inputList): #this function works properly
+    def answer(self, inputList):
         self.currentValues = inputList
         self.propagateThroughNetwork()
         currentIndex=0
@@ -63,7 +62,7 @@ class neuralNetwork:
                 return currentIndex
             currentIndex += 1
 
-    def generateRandomWeightsMatrix(self): #this function works properly
+    def generateRandomWeightsMatrix(self):
         random.seed(a=None)
         self.weightsMatrix[0] = self.generateMatrix(self.neuronsPerHiddenLayer, self.numberOfInputs)
         for i in range(0,self.numberOfHiddenLayers-1):
@@ -72,7 +71,7 @@ class neuralNetwork:
             self.generateMatrix(self.numberOfOutputs, self.neuronsPerHiddenLayer)
 
     @staticmethod
-    def generateMatrix(height, width): #this function works properly
+    def generateMatrix(height, width):
         returnMatrix = []
         for i in range (0, height):
             returnMatrix.append([])
@@ -80,7 +79,7 @@ class neuralNetwork:
                 returnMatrix[i].append(random.random() - random.random())
         return returnMatrix
 
-    def propagateThroughNetwork(self): #this function works properly
+    def propagateThroughNetwork(self):
         for i in range (0, self.numberOfHiddenLayers + 1):
             self.currentValues = dot(self.weightsMatrix[i], self.currentValues)
             for j in self.currentValues:
