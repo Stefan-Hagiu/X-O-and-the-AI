@@ -26,7 +26,7 @@ class MainMenu (WindowTemplate):
         todo = 1
 
     def enterTwoPlayerMode (self):
-        MainMenu.gameMenu = GameMenu(self.programWindow)
+        MainMenu.gameMenu = GameMenu(self.programWindow, "Human", "Human", "")
         self.stop()
 
     def enterOptions (self):

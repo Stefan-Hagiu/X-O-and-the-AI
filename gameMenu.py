@@ -6,7 +6,7 @@ from threading import Thread
 
 class GameMenu(WindowTemplate):
 
-    def __init__(self, programWindow,player1Type, player2Type, enemyAI=neuralNetwork.__init__()):
+    def __init__(self, programWindow,player1Type, player2Type, enemyAI):
 
         if player1Type == "":
             player1Type = "Human"
@@ -24,10 +24,14 @@ class GameMenu(WindowTemplate):
         self.aI = enemyAI
         self.player1Type = player1Type
         self.player2Type = player2Type
-        self.gameRunning = 1
+        self.playerToMove = 1
 
 
         super(GameMenu, self).__init__(programWindow)
+
+        if self.player1Type == "AI":
+            self.moveAI()
+
 
     def loadUI(self):
         for i in range (0,4):
@@ -39,21 +43,17 @@ class GameMenu(WindowTemplate):
                 self.buttonList[i][j].config(image=self.imageList[0])
                 self.buttonList[i][j].grid(row=i, column=j)
                 self.buttonList[i][j].bind("<Button-1>", self.buttonClick)
-        thread = Thread(target = self.gameThread)
-        thread.start()
 
-    def gameThread(self):
-        playerToMove=1
+    def moveAI(self):
         answer = ""
-        while self.gameRunning:
-            if playerToMove == 1:
-                if self.player1Type == "AI":
-                    answer = self.aI.answer(neuralNetwork.transformInput(self.game.returnInputForAi, playerToMove))
-                    playerToMove^=3
-            else:
-                if self.player2Type == "AI":
-                    answer = self.aI.answer(neuralNetwork.transformInput(self.game.returnInputForAi, playerToMove))
-                    playerToMove^=3
+        if self.playerToMove == 1:
+            if self.player1Type == "AI":
+                answer = self.aI.answer(neuralNetwork.transformInput(self.game.returnInputForAi, self.playerToMove))
+                self.playerToMove^=3
+        else:
+            if self.player2Type == "AI":
+                answer = self.aI.answer(neuralNetwork.transformInput(self.game.returnInputForAi, self.playerToMove))
+                self.playerToMove^=3
 
     def buttonClick(self, event):
         x=0
@@ -64,6 +64,8 @@ class GameMenu(WindowTemplate):
                     x=i
                     y=j
         self.makeMove(x, y)
+        self.playerToMove^=3
+        self.moveAI()
 
     def makeMove(self, x, y):
         returnString = self.game.move(x, y)
