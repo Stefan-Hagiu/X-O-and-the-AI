@@ -1,10 +1,18 @@
 from windowTemplate import *
 from ticTacToe import TicTacToeBoard
+from neuralNetwork import neuralNetwork
+from threading import Thread
 
 
 class GameMenu(WindowTemplate):
 
-    def __init__(self, programWindow):
+    def __init__(self, programWindow,player1Type, player2Type, enemyAI=neuralNetwork.__init__()):
+
+        if player1Type == "":
+            player1Type = "Human"
+        if player2Type == "":
+            player2Type = "Human"
+
         self.buttonList = []
 
         self._emptyImage = ImageTk.PhotoImage(Image.open("empty.png"))
@@ -12,8 +20,14 @@ class GameMenu(WindowTemplate):
         self._yImage = ImageTk.PhotoImage(Image.open("O.png"))
         self.imageList = [self._emptyImage, self._xImage, self._yImage]
 
-        super(GameMenu, self).__init__(programWindow)
         self.game = TicTacToeBoard()
+        self.aI = enemyAI
+        self.player1Type = player1Type
+        self.player2Type = player2Type
+        self.gameRunning = 1
+
+
+        super(GameMenu, self).__init__(programWindow)
 
     def loadUI(self):
         for i in range (0,4):
@@ -25,7 +39,21 @@ class GameMenu(WindowTemplate):
                 self.buttonList[i][j].config(image=self.imageList[0])
                 self.buttonList[i][j].grid(row=i, column=j)
                 self.buttonList[i][j].bind("<Button-1>", self.buttonClick)
+        thread = Thread(target = self.gameThread)
+        thread.start()
 
+    def gameThread(self):
+        playerToMove=1
+        answer = ""
+        while self.gameRunning:
+            if playerToMove == 1:
+                if self.player1Type == "AI":
+                    answer = self.aI.answer(neuralNetwork.transformInput(self.game.returnInputForAi, playerToMove))
+                    playerToMove^=3
+            else:
+                if self.player2Type == "AI":
+                    answer = self.aI.answer(neuralNetwork.transformInput(self.game.returnInputForAi, playerToMove))
+                    playerToMove^=3
 
     def buttonClick(self, event):
         x=0
