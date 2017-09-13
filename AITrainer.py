@@ -23,20 +23,23 @@ class AITrainer:
     def crank(self):
         newAIList = []
         winner = 0
-        for k in range(0,len(self.AIList)):
-            for i in range (0,len(self.AIList)-1):
-                winner = self.findWinner(self.AIList[i],self.AIList[i+1])
+        for i in range (0,len(self.AIList)-1):
+            for j in range (i+1, len(self.AIList)-1):
+                winner = self.findWinner(self.AIList[i],self.AIList[j])
                 if winner==2:
-                    self.AIList[i],self.AIList[i+1] = self.AIList[i+1],self.AIList[i]
+                    self.AIList[i],self.AIList[j] = self.AIList[j],self.AIList[i]
 
         for i in range (0, self.numberOfSurvivingAIs):
             for j in range (i, self.numberOfSurvivingAIs):
-                newAI=self.initializeAI()
+                newAI=neuralNetwork(9, 5, 9, 9, [])
                 newAI.generateWeightsMatrixFromParents(self.AIList[i],self.AIList[j])
                 newAIList.append(newAI)
 
+        while len(newAIList) < len(self.AIList):
+            newAIList.append(neuralNetwork(9, 5, 9, 9, []))
         self.AIList = newAIList
         self.numberOfSurvivingAIs = floor(sqrt(len(self.AIList)))
+        print(self.AIList[0].weightsMatrix[0][0][0])
 
     def initializeAI(self):
         newAI = neuralNetwork(9, 5, 9, 9, [])
