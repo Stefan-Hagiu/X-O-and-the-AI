@@ -88,9 +88,9 @@ class neuralNetwork:
 
 def transformInput(input):
     for i in range (0, len(input)):
-        if input[i]==["X"]:
-            input[i]=200
-        elif input[i]==["O"]:
-            input[i]=300
+        if input[i][0]=="X":
+            input[i][0]=10
+        elif input[i][0]=="O":
+            input[i][0]=15
         else:
-            input[i]=100
+            input[i][0]=5
