@@ -1,5 +1,5 @@
 from cmath import e
-from numpy import dot
+from numpy import dot, asarray
 import random
 
 '''
@@ -37,7 +37,6 @@ class neuralNetwork:
             for j in range (0, len(self.weightsMatrix[i])):
                 self.weightsMatrix[i].append([])
                 for k in range (0, len(self.weightsMatrix[i][j])):
-                    print(i,j,k)
                     self.weightsMatrix[i][j].append((firstFather.weightsMatrix[i][j][k]+secondFather.weightsMatrix[i][j][k])/2)
         return self.weightsMatrix
 
@@ -82,6 +81,7 @@ class neuralNetwork:
     def propagateThroughNetwork(self):
         for i in range (0, self.numberOfHiddenLayers + 1):
             self.currentValues = dot(self.weightsMatrix[i], self.currentValues)
+            print(self.currentValues)
             for j in self.currentValues:
                 j = self.sigmoid(j)
 
@@ -93,4 +93,4 @@ class neuralNetwork:
             elif input[i]=="O":
                 input[i]=-10000*gameState
             else:
-                input[i]=0
+                input[i]=10
