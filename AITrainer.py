@@ -1,13 +1,24 @@
 from ticTacToe import TicTacToeBoard
 from neuralNetwork import neuralNetwork
+from math import sqrt
+from math import floor
 
 class AITrainer:
     def __init__(self, numberOfAIs):
         self.AIList = []
         self.numberOfAIs = numberOfAIs
-        self.numberOfSurvivingAIs = max(2.0,self.numberOfAIs/5)
+        self.numberOfSurvivingAIs = floor(sqrt(numberOfAIs))
+        self.trainingStarted=0
         for i in range (0,self.numberOfAIs):
-            self.AIList.append(self.initializeAI)
+            self.AIList.append(neuralNetwork(9, 5, 9, 9, []))
+
+    def train(self):
+        self.trainingStarted=1
+        while self.trainingStarted:
+            self.crank()
+
+    def stopTraining(self):
+        self.trainingStarted=0
 
     def crank(self):
         newAIList = []
@@ -25,10 +36,10 @@ class AITrainer:
                 newAIList.append(newAI)
 
         self.AIList = newAIList
-        self.numberOfSurvivingAIs = max(2, self.numberOfAIs / 5)
+        self.numberOfSurvivingAIs = floor(sqrt(len(self.AIList)))
 
     def initializeAI(self):
-        newAI = neuralNetwork(9,5,9,9,[])
+        newAI = neuralNetwork(9, 5, 9, 9, [])
         return newAI
 
     def findWinner(self, ai1, ai2):
@@ -44,7 +55,7 @@ class AITrainer:
                 answer=ai1.answer(aiInput)
             else:
                 answer=ai2.answer(aiInput)
-            gameBoardReturnString=gameBoard.move(answer/3+1,answer%3+1)
+            gameBoardReturnString=gameBoard.move(floor(answer/3)+1,answer%3+1)
             if gameBoardReturnString == "Player 1 won":
                 gameWinner=1
             elif gameBoardReturnString == "Player 2 won":

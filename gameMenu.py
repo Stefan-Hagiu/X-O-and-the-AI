@@ -2,6 +2,7 @@ from windowTemplate import *
 from ticTacToe import TicTacToeBoard
 from neuralNetwork import neuralNetwork
 from PIL import Image, ImageTk
+from math import floor
 
 
 class GameMenu(WindowTemplate):
@@ -54,7 +55,7 @@ class GameMenu(WindowTemplate):
             if self.player2Type == "AI":
                 answer = self.aI.answer(neuralNetwork.transformInput(self.game.returnInputForAi, self.playerToMove))
                 self.playerToMove^=3
-        self.makeMove(answer/3+1,answer%3+1)
+        self.makeMove(floor(answer/3)+1,answer%3+1)
 
     def buttonClick(self, event):
         x=0

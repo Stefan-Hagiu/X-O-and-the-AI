@@ -5,7 +5,7 @@ class VsAIMenu(WindowTemplate):
     def __init__(self, programWindow):
 
         super(VsAIMenu, self).__init__(programWindow)
-        self.aITrainer = AITrainer(1000)
+        self.aITrainer = AITrainer(100)
         
     def loadUI(self):
         self.startTrainingButton = Button(self._thisWindow, text="Start training neural networks")
@@ -20,7 +20,9 @@ class VsAIMenu(WindowTemplate):
     def startTrainingNeuralNet(self, event):
         self.startTrainingButton.config(state=DISABLED)
         self.stopTrainingButton.config(state=NORMAL)
+        self.aITrainer.crank()
 
     def stopTrainingNeuralNet(self, event):
         self.startTrainingButton.config(state=NORMAL)
         self.stopTrainingButton.config(state=DISABLED)
+        self.aITrainer.stopTraining()

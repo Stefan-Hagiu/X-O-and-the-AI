@@ -80,8 +80,8 @@ class neuralNetwork:
 
     def propagateThroughNetwork(self):
         for i in range (0, self.numberOfHiddenLayers + 1):
+            print (self.weightsMatrix[i])
             self.currentValues = dot(self.weightsMatrix[i], self.currentValues)
-            print(self.currentValues)
             for j in self.currentValues:
                 j = self.sigmoid(j)
 
