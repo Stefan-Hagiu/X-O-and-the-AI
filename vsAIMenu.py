@@ -7,4 +7,4 @@ class VsAIMenu(WindowTemplate):
         aITrainer = AITrainer(1000)
         
     def loadUI(self):
-        print("Not ready yet")
+        todo = 1

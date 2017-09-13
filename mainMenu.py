@@ -11,17 +11,17 @@ class MainMenu (WindowTemplate):
         super(MainMenu, self).__init__(programWindow)
 
     def loadUI(self):
-        aIButton = Button(self._thisWindow, text="VS AI", command=self.enterAIMenu)
-        aIButton.pack(fill = X)
+        self.aIButton = Button(self._thisWindow, text="VS AI", command=self.enterAIMenu)
+        self.aIButton.pack(fill = X)
 
-        twoPlayerModeButton = Button(self._thisWindow, text="2P Mode", command=self.enterTwoPlayerMode)
-        twoPlayerModeButton.pack(fill = X)
+        self.twoPlayerModeButton = Button(self._thisWindow, text="2P Mode", command=self.enterTwoPlayerMode)
+        self.twoPlayerModeButton.pack(fill = X)
 
-        optionsButton = Button(self._thisWindow, text="Options", command=self.enterOptions)
-        optionsButton.pack(fill=X)
+        self.optionsButton = Button(self._thisWindow, text="Options", command=self.enterOptions)
+        self.optionsButton.pack(fill=X)
 
-        exitButton = Button(self._thisWindow, text="Exit", command=sys.exit)
-        exitButton.pack(fill=X)
+        self.exitButton = Button(self._thisWindow, text="Exit", command=sys.exit)
+        self.exitButton.pack(fill=X)
 
     def enterAIMenu(self):
         self.vsAIMenu = VsAIMenu(self.programWindow)
