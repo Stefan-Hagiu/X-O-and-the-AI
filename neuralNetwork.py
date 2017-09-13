@@ -64,11 +64,10 @@ class neuralNetwork:
 
     def generateRandomWeightsMatrix(self):
         random.seed(a=None)
-        self.weightsMatrix[0] = self.generateMatrix(self.neuronsPerHiddenLayer, self.numberOfInputs)
+        self.weightsMatrix.append(self.generateMatrix(self.neuronsPerHiddenLayer, self.numberOfInputs))
         for i in range(0,self.numberOfHiddenLayers-1):
-            self.weightsMatrix[i+1] = self.generateMatrix(self.neuronsPerHiddenLayer, self.neuronsPerHiddenLayer)
-        self.weightsMatrix[self.numberOfHiddenLayers]= \
-            self.generateMatrix(self.numberOfOutputs, self.neuronsPerHiddenLayer)
+            self.weightsMatrix.append(self.generateMatrix(self.neuronsPerHiddenLayer, self.neuronsPerHiddenLayer))
+        self.weightsMatrix.append(self.generateMatrix(self.numberOfOutputs, self.neuronsPerHiddenLayer))
 
     @staticmethod
     def generateMatrix(height, width):
@@ -92,3 +91,5 @@ class neuralNetwork:
                 input[i]=10000*gameState
             elif input[i]=="O":
                 input[i]=-10000*gameState
+            else:
+                input[i]=0
