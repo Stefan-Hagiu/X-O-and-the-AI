@@ -85,12 +85,12 @@ class neuralNetwork:
             for j in self.currentValues:
                 j = self.sigmoid(j)
 
-    @staticmethod
-    def transformInput(input, gameState):
-        for i in range (0, len(input)):
-            if input[i]=="X":
-                input[i]=10000
-            elif input[i]=="O":
-                input[i]=-10000
-            else:
-                input[i]=10
+
+def transformInput(input):
+    for i in range (0, len(input)):
+        if input[i]=="X":
+            input[i]=10000
+        elif input[i]=="O":
+            input[i]=-10000
+        else:
+            input[i]=10

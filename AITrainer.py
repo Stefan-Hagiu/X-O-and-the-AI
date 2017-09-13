@@ -1,5 +1,5 @@
-from ticTacToe import TicTacToeBoard
-from neuralNetwork import neuralNetwork
+from ticTacToe import *
+from neuralNetwork import *
 from math import sqrt
 from math import floor
 
@@ -10,7 +10,7 @@ class AITrainer:
         self.numberOfSurvivingAIs = floor(sqrt(numberOfAIs))
         self.trainingStarted=0
         for i in range (0,self.numberOfAIs):
-            self.AIList.append(neuralNetwork(9, 5, 9, 9, []))
+            self.AIList.append(neuralNetwork(9, 9, 9, 9, []))
 
     def train(self):
         self.trainingStarted=1
@@ -31,18 +31,26 @@ class AITrainer:
 
         for i in range (0, self.numberOfSurvivingAIs):
             for j in range (i, self.numberOfSurvivingAIs):
-                newAI=neuralNetwork(9, 5, 9, 9, [])
+                newAI=neuralNetwork(9, 9, 9, 9, [])
                 newAI.generateWeightsMatrixFromParents(self.AIList[i],self.AIList[j])
                 newAIList.append(newAI)
 
         while len(newAIList) < len(self.AIList):
-            newAIList.append(neuralNetwork(9, 5, 9, 9, []))
+            newAIList.append(neuralNetwork(9, 9, 9, 9, []))
         self.AIList = newAIList
         self.numberOfSurvivingAIs = floor(sqrt(len(self.AIList)))
-        print(self.AIList[0].weightsMatrix[0][0][0])
+
+        empty = TicTacToeBoard()
+        empty.move(1,1)
+        empty.move(1,2)
+        empty.move(2,1)
+        empty.move(2,2)
+        something = empty.returnInputForAi()
+        transformInput(something)
+        print(self.AIList[0].answer(something))
 
     def initializeAI(self):
-        newAI = neuralNetwork(9, 5, 9, 9, [])
+        newAI = neuralNetwork(9, 9, 9, 9, [])
         return newAI
 
     def findWinner(self, ai1, ai2):
@@ -53,7 +61,7 @@ class AITrainer:
         gameBoard = TicTacToeBoard()
         while not gameWinner:
             aiInput = gameBoard.returnInputForAi()
-            neuralNetwork.transformInput(aiInput, turn)
+            transformInput(aiInput)
             if turn==1:
                 answer=ai1.answer(aiInput)
             else:
