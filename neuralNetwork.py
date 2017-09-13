@@ -76,7 +76,7 @@ class neuralNetwork:
         for i in range (0, height):
             returnMatrix.append([])
             for j in range (0, width):
-                returnMatrix[i].append(random.random() - random.random())
+                returnMatrix[i].append(random.uniform(-1, 1))
         return returnMatrix
 
     def propagateThroughNetwork(self):
@@ -88,9 +88,9 @@ class neuralNetwork:
 
 def transformInput(input):
     for i in range (0, len(input)):
-        if input[i]=="X":
-            input[i]=10000
-        elif input[i]=="O":
-            input[i]=-10000
+        if input[i]==["X"]:
+            input[i]=200
+        elif input[i]==["O"]:
+            input[i]=300
         else:
-            input[i]=10
+            input[i]=100

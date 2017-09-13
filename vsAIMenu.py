@@ -20,7 +20,7 @@ class VsAIMenu(WindowTemplate):
     def startTrainingNeuralNet(self, event):
         self.startTrainingButton.config(state=DISABLED)
         self.stopTrainingButton.config(state=NORMAL)
-        for i in range (0,20):
+        for i in range (0,20000):
             self.aITrainer.crank()
 
     def stopTrainingNeuralNet(self, event):

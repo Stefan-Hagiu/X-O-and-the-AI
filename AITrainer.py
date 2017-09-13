@@ -40,15 +40,6 @@ class AITrainer:
         self.AIList = newAIList
         self.numberOfSurvivingAIs = floor(sqrt(len(self.AIList)))
 
-        empty = TicTacToeBoard()
-        empty.move(1,1)
-        empty.move(1,2)
-        empty.move(2,1)
-        empty.move(2,2)
-        something = empty.returnInputForAi()
-        transformInput(something)
-        print(self.AIList[0].answer(something))
-
     def initializeAI(self):
         newAI = neuralNetwork(9, 9, 9, 9, [])
         return newAI
@@ -77,4 +68,5 @@ class AITrainer:
                 elif turn == 2:
                     gameWinner = 1
             turn=turn^3
+        print (gameBoard.returnInputForAi())
         return gameWinner
