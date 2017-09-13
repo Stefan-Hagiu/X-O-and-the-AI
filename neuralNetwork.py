@@ -32,11 +32,12 @@ class neuralNetwork:
         return 1/(1 + (e ** (-value)))
 
     def generateWeightsMatrixFromParents(self, firstFather, secondFather):
-        for i in range (0, len(self.weightsMatrix)):
+        self.weightsMatrix = []
+        for i in range (0, len(firstFather.weightsMatrix)):
             self.weightsMatrix.append([])
-            for j in range (0, len(self.weightsMatrix[i])):
+            for j in range (0, len(firstFather.weightsMatrix[i])):
                 self.weightsMatrix[i].append([])
-                for k in range (0, len(self.weightsMatrix[i][j])):
+                for k in range (0, len(firstFather.weightsMatrix[i][j])):
                     self.weightsMatrix[i][j].append((firstFather.weightsMatrix[i][j][k]+secondFather.weightsMatrix[i][j][k])/2)
         return self.weightsMatrix
 
@@ -80,7 +81,6 @@ class neuralNetwork:
 
     def propagateThroughNetwork(self):
         for i in range (0, self.numberOfHiddenLayers + 1):
-            print (self.weightsMatrix[i])
             self.currentValues = dot(self.weightsMatrix[i], self.currentValues)
             for j in self.currentValues:
                 j = self.sigmoid(j)
