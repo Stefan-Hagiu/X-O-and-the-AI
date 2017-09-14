@@ -35,7 +35,21 @@ class neuralNetwork:
             for j in range (0, len(firstFather.weightsMatrix[i])):
                 self.weightsMatrix[i].append([])
                 for k in range (0, len(firstFather.weightsMatrix[i][j])):
-                    self.weightsMatrix[i][j].append((firstFather.weightsMatrix[i][j][k]*10+secondFather.weightsMatrix[i][j][k])/11)
+                    self.weightsMatrix[i][j].append((firstFather.weightsMatrix[i][j][k]*7+secondFather.weightsMatrix[i][j][k]*3)/10)
+
+        for p in range(0,self.mutationRate):
+            i=random.randint(0,len(firstFather.weightsMatrix)-1)
+            j=random.randint(0,len(firstFather.weightsMatrix[i])-1)
+            k=random.randint(0,len(firstFather.weightsMatrix[i][j])-1)
+            invertPower=random.randint(1,2)
+            multiplier=random.randint(2,10)
+            if invertPower==1:
+                multiplier=1/multiplier
+            self.weightsMatrix[i][j][k]*=multiplier
+            if self.weightsMatrix[i][j][k]>1:
+                self.weightsMatrix[i][j][k]=1
+            if self.weightsMatrix[i][j][k]<-1:
+                self.weightsMatrix[i][j][k]=-1
         return self.weightsMatrix
 
     def __init__(self, numberOfInputs, numberOfHiddenLayers, neuronsPerHiddenLayer, numberOfOutputs, weightsMatrix):
@@ -45,6 +59,8 @@ class neuralNetwork:
         self.neuronsPerHiddenLayer = neuronsPerHiddenLayer
         self.numberOfOutputs = numberOfOutputs
         self.weightsMatrix = weightsMatrix
+
+        self.mutationRate=5
 
         self.currentValues = []
 
