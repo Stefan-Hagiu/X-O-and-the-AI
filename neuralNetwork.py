@@ -88,4 +88,4 @@ def transformInput(input):
         elif input[i][0]=="O":
             input[i][0]=2
         else:
-            input[i][0]=10
+            input[i][0]=3

@@ -23,11 +23,12 @@ class AITrainer:
     def crank(self):
         newAIList = []
         winner = 0
-        for i in range (0, self.numberOfSurvivingAIs):
-            for j in range (i+1, len(self.AIList)-1):
-                winner = max(self.findWinner(self.AIList[i],self.AIList[j]),self.findWinner(self.AIList[j],self.AIList[i]))
-                if winner==2:
-                    self.AIList[i],self.AIList[j] = self.AIList[j],self.AIList[i]
+        for k in range (0, floor(sqrt(len(self.AIList)))):
+            for i in range (0, self.numberOfSurvivingAIs):
+                for j in range (i+1, len(self.AIList)-1):
+                    winner = max(self.findWinner(self.AIList[i],self.AIList[j]),self.findWinner(self.AIList[j],self.AIList[i]))
+                    if winner==2:
+                        self.AIList[i],self.AIList[j] = self.AIList[j],self.AIList[i]
 
         for i in range (0, self.numberOfSurvivingAIs):
             for j in range (i, self.numberOfSurvivingAIs):
@@ -71,6 +72,5 @@ class AITrainer:
                     gameWinner = 1
             turn=turn^3
         if gameWinner != turn:
-            print(gameWinner, " " , turn)
-            print (gameBoard.returnInputForAi())
+            print(gameBoard.returnInputForAi())
         return gameWinner
