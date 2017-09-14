@@ -43,6 +43,7 @@ class neuralNetwork:
             k=random.randint(0,len(firstFather.weightsMatrix[i][j])-1)
             invertPower=random.randint(1,2)
             multiplier=random.randint(2,10)
+            multiplier=1+multiplier/10
             if invertPower==1:
                 multiplier=1/multiplier
             self.weightsMatrix[i][j][k]*=multiplier
