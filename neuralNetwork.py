@@ -28,9 +28,6 @@ import random
 
 class neuralNetwork:
 
-    def sigmoid(self, value):
-        return 1/(1 + (e ** (-value)))
-
     def generateWeightsMatrixFromParents(self, firstFather, secondFather):
         self.weightsMatrix = []
         for i in range (0, len(firstFather.weightsMatrix)):
@@ -82,8 +79,6 @@ class neuralNetwork:
     def propagateThroughNetwork(self):
         for i in range (0, self.numberOfHiddenLayers + 1):
             self.currentValues = dot(self.weightsMatrix[i], self.currentValues)
-            for j in self.currentValues:
-                j = self.sigmoid(j)
 
 
 def transformInput(input):
