@@ -10,7 +10,7 @@ class AITrainer:
         self.numberOfSurvivingAIs = floor(sqrt(numberOfAIs))
         self.trainingStarted=0
         for i in range (0,self.numberOfAIs):
-            self.AIList.append(neuralNetwork(9, 3, 9, 9, []))
+            self.AIList.append(neuralNetwork(9, 5, 9, 9, []))
 
     def train(self):
         self.trainingStarted=1
@@ -23,25 +23,25 @@ class AITrainer:
     def crank(self):
         newAIList = []
         winner = 0
-        for i in range (0,len(self.AIList)-1):
+        for i in range (0, self.numberOfSurvivingAIs):
             for j in range (i+1, len(self.AIList)-1):
-                winner = self.findWinner(self.AIList[i],self.AIList[j])
+                winner = max(self.findWinner(self.AIList[i],self.AIList[j]),self.findWinner(self.AIList[j],self.AIList[i]))
                 if winner==2:
                     self.AIList[i],self.AIList[j] = self.AIList[j],self.AIList[i]
 
         for i in range (0, self.numberOfSurvivingAIs):
             for j in range (i, self.numberOfSurvivingAIs):
-                newAI=neuralNetwork(9, 3, 9, 9, [])
+                newAI=neuralNetwork(9, 5, 9, 9, [])
                 newAI.generateWeightsMatrixFromParents(self.AIList[i],self.AIList[j])
                 newAIList.append(newAI)
 
         while len(newAIList) < len(self.AIList):
-            newAIList.append(neuralNetwork(9, 3, 9, 9, []))
+            newAIList.append(neuralNetwork(9, 5, 9, 9, []))
         self.AIList = newAIList
         self.numberOfSurvivingAIs = floor(sqrt(len(self.AIList)))
 
     def initializeAI(self):
-        newAI = neuralNetwork(9, 3, 9, 9, [])
+        newAI = neuralNetwork(9, 5, 9, 9, [])
         return newAI
 
     def findWinner(self, ai1, ai2):
@@ -55,14 +55,14 @@ class AITrainer:
             transformInput(aiInput)
             if turn==1:
                 answer=ai1.answer(aiInput)
-            else:
+            elif turn==2:
                 answer=ai2.answer(aiInput)
             gameBoardReturnString=gameBoard.move(floor(answer/3)+1,answer%3+1)
             if gameBoardReturnString == "Player 1 won":
-                print("success")
                 gameWinner=1
             elif gameBoardReturnString == "Player 2 won":
-                print("success")
+                gameWinner=2
+            elif gameBoardReturnString == "Tie":
                 gameWinner=2
             elif gameBoardReturnString == "Invalid move":
                 if turn == 1:
@@ -70,4 +70,7 @@ class AITrainer:
                 elif turn == 2:
                     gameWinner = 1
             turn=turn^3
+        if gameWinner != turn:
+            print(gameWinner, " " , turn)
+            print (gameBoard.returnInputForAi())
         return gameWinner

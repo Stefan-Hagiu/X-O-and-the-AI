@@ -38,7 +38,7 @@ class neuralNetwork:
             for j in range (0, len(firstFather.weightsMatrix[i])):
                 self.weightsMatrix[i].append([])
                 for k in range (0, len(firstFather.weightsMatrix[i][j])):
-                    self.weightsMatrix[i][j].append((firstFather.weightsMatrix[i][j][k]+secondFather.weightsMatrix[i][j][k])/2)
+                    self.weightsMatrix[i][j].append((firstFather.weightsMatrix[i][j][k]*10+secondFather.weightsMatrix[i][j][k])/11)
         return self.weightsMatrix
 
     def __init__(self, numberOfInputs, numberOfHiddenLayers, neuronsPerHiddenLayer, numberOfOutputs, weightsMatrix):
@@ -89,8 +89,8 @@ class neuralNetwork:
 def transformInput(input):
     for i in range (0, len(input)):
         if input[i][0]=="X":
-            input[i][0]=10
+            input[i][0]=1
         elif input[i][0]=="O":
-            input[i][0]=15
+            input[i][0]=2
         else:
-            input[i][0]=5
+            input[i][0]=10
